@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Technology Electrical Company | Solar, CCTV & Electrical Installations</title>
+
+    <style>
+        /* ============ CSS CUSTOM PROPERTIES ============ */
+        :root {
+            --deep-blue: #0a2e4a;
+            --deep-blue-dark: #071f33;
+            --golden-yellow: #f5b042;
+            --golden-yellow-dark: #d99a2c;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --mid-gray: #6c757d;
+            --text-dark: #1a1a1a;
+            --text-medium: #444;
+            --text-light: #666;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+            --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.2);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition-fast: 0.2s ease;
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1200px;
+            --nav-height: 72px;
+        }
+
+        /* ============ RESET & BASE ============ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-fast);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ============ SCROLL ANIMATIONS (Intersection Observer) ============ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .fade-up-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .fade-up-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .fade-up-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* ============ NAVIGATION ============ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: box-shadow var(--transition-smooth), background var(--transition-smooth);
+            display: flex;
+            align-items: center;
+        }
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.99);
+        }
+        .nav-container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--deep-blue);
+            letter-spacing: -0.3px;
+            z-index: 1001;
+        }
+        .nav-logo .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--deep-blue);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--golden-yellow);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .nav-logo span {
+            white-space: nowrap;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            position: relative;
+            padding: 4px 0;
+            white-space: nowrap;
+            transition: color var(--transition-fast);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--golden-yellow);
+            transition: width var(--transition-smooth);
+            border-radius: 2px;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--deep-blue);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: var(--golden-yellow);
+            color: var(--deep-blue) !important;
+            padding: 10px 22px !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: background var(--transition-fast), transform var(--transition-fast) !important;
+        }
+        .nav-cta:hover {
+            background: var(--golden-yellow-dark);
+            transform: translateY(-1px);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+            width: 40px;
+            height: 32px;
+            justify-content: center;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--deep-blue);
+            border-radius: 3px;
+            transition: all var(--transition-smooth);
+            transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Nav Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 30, 50, 0.6);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+        }
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-nav-panel {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            max-width: 85vw;
+            height: 100vh;
+            background: var(--white);
+            z-index: 1000;
+            padding: 100px 32px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: right var(--transition-smooth);
+            box-shadow: var(--shadow-xl);
+        }
+        .mobile-nav-panel.active {
+            right: 0;
+        }
+        .mobile-nav-panel a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-medium);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+            transition: color var(--transition-fast);
+        }
+        .mobile-nav-panel a:hover {
+            color: var(--deep-blue);
+        }
+        .mobile-nav-panel .mobile-cta {
+            background: var(--golden-yellow);
+            color: var(--deep-blue);
+            text-align: center;
+            border-radius: 50px;
+            padding: 14px 24px;
+            font-weight: 600;
+            border-bottom: none;
+            margin-top: 8px;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            background-attachment: fixed;
+            margin-top: 0;
+            padding: 120px 24px 80px;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg,
+                    rgba(10, 30, 50, 0.88) 0%,
+                    rgba(10, 30, 50, 0.72) 50%,
+                    rgba(7, 20, 33, 0.85) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 750px;
+            color: var(--white);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(245, 176, 66, 0.18);
+            border: 1px solid rgba(245, 176, 66, 0.4);
+            color: var(--golden-yellow);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .hero h1 .highlight {
+            color: var(--golden-yellow);
+            position: relative;
+        }
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition-fast);
+            letter-spacing: 0.2px;
+            text-align: center;
+        }
+        .btn-primary {
+            background: var(--golden-yellow);
+            color: var(--deep-blue);
+        }
+        .btn-primary:hover {
+            background: var(--golden-yellow-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(245, 176, 66, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ============ SECTION COMMONS ============ */
+        .section {
+            padding: 90px 24px;
+        }
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .section-label {
+            display: inline-block;
+            color: var(--golden-yellow-dark);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+        .section-alt {
+            background: var(--off-white);
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .about-image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        .about-image-wrapper img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            transition: transform 0.5s ease;
+        }
+        .about-image-wrapper:hover img {
+            transform: scale(1.04);
+        }
+        .about-image-badge {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: var(--white);
+            color: var(--deep-blue);
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .about-image-badge .badge-dot {
+            width: 12px;
+            height: 12px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 14px rgba(34, 197, 94, 0);
+            }
+        }
+        .about-text .section-title {
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--text-medium);
+            margin-bottom: 16px;
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 28px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 18px 12px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--deep-blue);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--mid-gray);
+            margin-top: 4px;
+        }
+
+        /* ============ SERVICES SECTION ============ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px 28px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--golden-yellow);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-smooth);
+        }
+        .service-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+            border-color: var(--light-gray);
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 1.6rem;
+            background: rgba(10, 30, 50, 0.06);
+            color: var(--deep-blue);
+            transition: all var(--transition-smooth);
+        }
+        .service-card:hover .service-icon {
+            background: var(--deep-blue);
+            color: var(--golden-yellow);
+            transform: scale(1.08);
+        }
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            font-size: 0.93rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ============ PROJECTS SECTION ============ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .project-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            group: true;
+        }
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.08);
+        }
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 30, 50, 0.85) 0%, rgba(10, 30, 50, 0.2) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-overlay h4 {
+            color: var(--white);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .project-overlay span {
+            color: var(--golden-yellow);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ============ TESTIMONIALS SECTION ============ */
+        .testimonials-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .testimonial-card {
+            min-width: 100%;
+            padding: 40px 36px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        .testimonial-stars {
+            color: var(--golden-yellow);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+        .testimonial-card blockquote {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 20px;
+            quotes: "“" "”";;
+        }
+        .testimonial-card blockquote::before {
+            content: open-quote;
+            font-size: 3rem;
+            color: var(--golden-yellow);
+            line-height: 0;
+            vertical-align: -0.5em;
+            margin-right: 6px;
+            font-family: Georgia, serif;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--deep-blue);
+            font-size: 1rem;
+        }
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--mid-gray);
+        }
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        .testimonial-dots button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background: var(--light-gray);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .testimonial-dots button.active {
+            background: var(--golden-yellow);
+            width: 32px;
+            border-radius: 20px;
+        }
+
+        /* ============ CONTACT SECTION ============ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .contact-form-wrapper {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .contact-form-wrapper h3 {
+            font-size: 1.5rem;
+            color: var(--deep-blue);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+            background: var(--off-white);
+            color: var(--text-dark);
+            resize: vertical;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--golden-yellow);
+            box-shadow: 0 0 0 4px rgba(245, 176, 66, 0.12);
+            background: var(--white);
+        }
+        .form-group textarea {
+            min-height: 130px;
+        }
+        .form-group .error-msg {
+            color: #dc3545;
+            font-size: 0.82rem;
+            margin-top: 4px;
+            display: none;
+        }
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.08);
+        }
+        .form-group.error .error-msg {
+            display: block;
+        }
+        .form-success {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            margin-top: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-info-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--transition-fast);
+        }
+        .contact-info-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .contact-info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(10, 30, 50, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            color: var(--deep-blue);
+        }
+        .contact-info-card h4 {
+            font-weight: 700;
+            color: var(--deep-blue);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+        .contact-info-card span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--deep-blue);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 60px 24px 28px;
+        }
+        .footer-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 36px;
+            height: 2px;
+            background: var(--golden-yellow);
+            border-radius: 2px;
+        }
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col ul li a {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color var(--transition-fast);
+        }
+        .footer-col ul li a:hover {
+            color: var(--golden-yellow);
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+        .footer-social a:hover {
+            background: var(--golden-yellow);
+            color: var(--deep-blue);
+            transform: translateY(-3px);
+        }
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* ============ RESPONSIVE BREAKPOINTS ============ */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+            .about-grid {
+                gap: 36px;
+            }
+            .about-image-wrapper img {
+                height: 340px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero {
+                background-attachment: scroll;
+                min-height: 90vh;
+                padding: 100px 20px 60px;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            .section {
+                padding: 60px 20px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .about-image-wrapper img {
+                height: 280px;
+            }
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .stat-number {
+                font-size: 1.4rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .contact-form-wrapper {
+                padding: 28px 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+            }
+            .testimonial-card {
+                padding: 28px 20px;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            .stat-number {
+                font-size: 1.2rem;
+            }
+            .stat-label {
+                font-size: 0.7rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .contact-info-card {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <header class="navbar" id="navbar" role="banner">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo" aria-label="New Technology Electrical Company Home">
+                <div class="logo-icon">⚡</div>
+                <span>NT Electrical</span>
+            </a>
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+                <a href="#hero" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact" class="nav-cta">Get a Quote</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+    <div class="mobile-nav-panel" id="mobilePanel">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact" class="mobile-cta">Get a Free Quote</a>
+    </div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-up">
+            <span class="hero-badge">Trusted Since 2012</span>
+            <h1>Powering the Future with <span class="highlight">Smart Electrical</span> Solutions</h1>
+            <p>New Technology Electrical Company delivers expert solar installations, advanced CCTV systems, and full-scale electrical services for homes, businesses, and industries nationwide.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Request Free Quote</a>
+                <a href="#services" class="btn btn-outline">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-image-wrapper fade-up">
+                    <img
+                    src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80"
+                    alt="Professional electrician installing wiring at a commercial site"
+                    loading="lazy"
+                    >
+                    <div class="about-image-badge">
+                        <span class="badge-dot"></span> 24/7 Emergency Service
+                    </div>
+                </div>
+                <div class="about-text fade-up fade-up-delay-2">
+                    <span class="section-label">Who We Are</span>
+                    <h2 class="section-title">Your Trusted Electrical Partner Across the Nation</h2>
+                    <p>Founded in 2012, New Technology Electrical Company has grown from a small local team into a nationally recognized electrical services provider. We specialize in cutting-edge solar energy systems, high-definition CCTV security installations, and comprehensive domestic and commercial electrical work.</p>
+                    <p>Our certified electricians bring decades of combined experience to every project — from simple home rewiring to complex industrial power distribution. We take pride in delivering safe, reliable, and energy-efficient solutions that stand the test of time.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">12+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3,500+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES SECTION ==================== -->
+    <section class="section section-alt" id="services">
+        <div class="section-container">
+            <span class="section-label fade-up">What We Offer</span>
+            <h2 class="section-title fade-up fade-up-delay-1">Comprehensive Electrical Services</h2>
+            <p class="section-subtitle fade-up fade-up-delay-2">From solar panel installations to advanced security systems, we cover every electrical need with precision and care.</p>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card fade-up fade-up-delay-1">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </div>
+                    <h3>Solar Energy Systems</h3>
+                    <p>Design, supply, and installation of high-efficiency photovoltaic systems for homes and businesses. Reduce your electricity bills and carbon footprint with our tailored solar solutions.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card fade-up fade-up-delay-2">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M7 3h10v3H7z"/></svg>
+                    </div>
+                    <h3>CCTV & Security Installation</h3>
+                    <p>High-definition surveillance systems with remote monitoring capabilities. We install and configure cameras for residential, retail, and industrial properties to keep you secure 24/7.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card fade-up fade-up-delay-3">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V10z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Domestic Electrical Services</h3>
+                    <p>Complete home electrical solutions including rewiring, fuse board upgrades, lighting design, smart home integration, and appliance circuit installation — all certified and guaranteed.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card fade-up fade-up-delay-1">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="8" y1="2" x2="8" y2="22"/><line x1="16" y1="2" x2="16" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="2" y1="16" x2="22" y2="16"/></svg>
+                    </div>
+                    <h3>Commercial Electrical</h3>
+                    <p>Electrical fit-outs for offices, retail spaces, and commercial complexes. We handle power distribution, energy-efficient lighting, data cabling, and compliance certification.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card fade-up fade-up-delay-2">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3>Industrial Electrical</h3>
+                    <p>Heavy-duty electrical infrastructure for factories, warehouses, and processing plants. Our team handles high-voltage systems, motor controls, and industrial automation wiring.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-card fade-up fade-up-delay-3">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11 8 11s8-5.6 8-11a8 8 0 0 0-8-8z"/></svg>
+                    </div>
+                    <h3>Nationwide Coverage</h3>
+                    <p>From urban centers to rural communities, we deploy our skilled teams across the country. No project is too remote — we bring reliable electrical expertise wherever you are located.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section class="section" id="projects">
+        <div class="section-container">
+            <span class="section-label fade-up">Featured Projects</span>
+            <h2 class="section-title fade-up fade-up-delay-1">Our Recent Work</h2>
+            <p class="section-subtitle fade-up fade-up-delay-2">Explore a selection of our completed installations showcasing quality craftsmanship and attention to detail.</p>
+            <div class="projects-grid">
+                <div class="project-card fade-up fade-up-delay-1">
+                    <img
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80"
+                    alt="Large-scale commercial solar panel installation on a corporate building"
+                    loading="lazy"
+                    >
+                    <div class="project-overlay">
+                        <h4>GreenTech Office Park</h4>
+                        <span>120kW Solar Farm Installation</span>
+                    </div>
+                </div>
+                <div class="project-card fade-up fade-up-delay-2">
+                    <img
+                    src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=600&q=80"
+                    alt="Modern CCTV security camera system installed on a commercial property"
+                    loading="lazy"
+                    >
+                    <div class="project-overlay">
+                        <h4>Metro Shopping Complex</h4>
+                        <span>48-Camera CCTV Network</span>
+                    </div>
+                </div>
+                <div class="project-card fade-up fade-up-delay-3">
+                    <img
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
+                    alt="Modern commercial building with advanced electrical infrastructure"
+                    loading="lazy"
+                    >
+                    <div class="project-overlay">
+                        <h4>Apex Industrial Facility</h4>
+                        <span>Full Electrical Fit-Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
+    <section class="section section-alt" id="testimonials">
+        <div class="section-container">
+            <span class="section-label fade-up">Client Feedback</span>
+            <h2 class="section-title fade-up fade-up-delay-1" style="text-align:center;">What Our Clients Say</h2>
+            <p class="section-subtitle fade-up fade-up-delay-2" style="text-align:center;margin-left:auto;margin-right:auto;">
+                Real reviews from homeowners and businesses who trust NT Electrical.
+            </p>
+            <div class="testimonials-wrapper fade-up fade-up-delay-3">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <blockquote>The NT Electrical team installed our entire home solar system in just three days. Their professionalism was outstanding, and our electricity bill has dropped by nearly 70% since the installation. We couldn't be happier with the result.</blockquote>
+                        <div class="testimonial-author">Sarah Mwakajumba</div>
+                        <div class="testimonial-role">Homeowner, Dar es Salaam</div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <blockquote>We contracted NT Electrical for a full CCTV upgrade across all five of our retail locations. The image quality is crystal clear, and the remote access feature lets me monitor everything from my phone. Exceptional service from start to finish.</blockquote>
+                        <div class="testimonial-author">David Okonkwo</div>
+                        <div class="testimonial-role">Operations Director, MetroMart Ltd</div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <blockquote>After a major power surge damaged our factory's electrical system, NT Electrical responded within two hours and had us back online the same day. Their industrial expertise and rapid response saved us thousands in downtime costs.</blockquote>
+                        <div class="testimonial-author">Priya Naidoo</div>
+                        <div class="testimonial-role">Plant Manager, Apex Manufacturing</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots" id="testimonialDots">
+                <button class="active" data-index="0" aria-label="Testimonial 1"></button>
+                <button data-index="1" aria-label="Testimonial 2"></button>
+                <button data-index="2" aria-label="Testimonial 3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="section" id="contact">
+        <div class="section-container">
+            <span class="section-label fade-up">Get In Touch</span>
+            <h2 class="section-title fade-up fade-up-delay-1">Request a Free Quote</h2>
+            <p class="section-subtitle fade-up fade-up-delay-2">Tell us about your project and our team will respond within 24 hours with a detailed proposal.</p>
+            <div class="contact-grid">
+                <div class="contact-form-wrapper fade-up fade-up-delay-3">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" novalidate>
+                        <div class="form-group" id="nameGroup">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                            <span class="error-msg">Please enter your full name (at least 2 characters).</span>
+                        </div>
+                        <div class="form-group" id="emailGroup">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            <span class="error-msg">Please enter a valid email address.</span>
+                        </div>
+                        <div class="form-group" id="messageGroup">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" placeholder="Describe your project, requirements, or questions..." required></textarea>
+                            <span class="error-msg">Please enter a message (at least 10 characters).</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+                        <div class="form-success" id="formSuccess">
+                            ✅ Thank you! Your message has been sent successfully. Our team will get back to you within 24 hours.
+                        </div>
+                    </form>
+                </div>
+                <div class="contact-info fade-up fade-up-delay-4">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">📍</div>
+                        <div>
+                            <h4>Head Office</h4>
+                            <span>Seeta, kampala-jinja highway, Uganda</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <span>+255 773528003</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <span>muhumuzadaniel80@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">🕐</div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <span>Monday – Friday: 7:30 AM – 6:00 PM<br>Saturday: 8:00 AM – 2:00 PM<br>24/7 Emergency Hotline Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>New Technology Electrical</h4>
+                <p>Your trusted partner for solar energy, CCTV security, and comprehensive electrical installations. Serving residential, commercial, and industrial clients nationwide with pride since 2012.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">LN</a>
+                    <a href="#" aria-label="WhatsApp">WA</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="#services">Solar Energy</a></li>
+                    <li><a href="#services">CCTV Installation</a></li>
+                    <li><a href="#services">Domestic Electrical</a></li>
+                    <li><a href="#services">Commercial Electrical</a></li>
+                    <li><a href="#services">Industrial Electrical</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to receive tips and updates on energy-saving solutions.</p>
+                <form style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Your email" style="flex:1;min-width:140px;padding:10px 14px;border-radius:50px;border:none;font-size:0.9rem;">
+                    <button type="submit" class="btn btn-primary" style="padding:10px 18px;font-size:0.85rem;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 New Technology Electrical Company. All rights reserved. | Licensed &amp; Insured Electrical Contractor
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        (function() {
+            // ============ DOM ELEMENT REFERENCES ============
+            const navbar = document.getElementById('navbar');
+            const hamburger = document.getElementById('hamburger');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const mobilePanel = document.getElementById('mobilePanel');
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-panel a');
+            const allSectionLinks = document.querySelectorAll('a[href^="#"]');
+            const testimonialsTrack = document.getElementById('testimonialsTrack');
+            const testimonialDots = document.getElementById('testimonialDots');
+            const contactForm = document.getElementById('contactForm');
+            const formSuccess = document.getElementById('formSuccess');
+
+            let currentTestimonial = 0;
+            const totalTestimonials = 3;
+            let autoSlideInterval;
+            let isTransitioning = false;
+
+            // ============ MOBILE MENU TOGGLE ============
+            function openMobileMenu() {
+                hamburger.classList.add('active');
+                mobileOverlay.classList.add('active');
+                mobilePanel.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                hamburger.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                mobilePanel.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', function() {
+                if (hamburger.classList.contains('active')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            });
+
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+
+            // Close mobile menu when a nav link is clicked
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (mobilePanel.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // ============ NAVBAR SHADOW ON SCROLL ============
+            function updateNavbarShadow() {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', updateNavbarShadow, { passive: true });
+            updateNavbarShadow(); // Initial check
+
+            // ============ ACTIVE NAV LINK HIGHLIGHTING ============
+            const sectionIds = ['hero', 'about', 'services', 'projects', 'testimonials', 'contact'];
+            const navLinkElements = document.querySelectorAll('.nav-links a');
+
+            function updateActiveNavLink() {
+                let currentSection = 'hero';
+                const scrollPos = window.scrollY + 120;
+
+                sectionIds.forEach(function(id) {
+                    const section = document.getElementById(id);
+                    if (section && section.offsetTop <= scrollPos) {
+                        currentSection = id;
+                    }
+                });
+
+                navLinkElements.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+
+            // ============ SMOOTH SCROLL FOR ALL ANCHOR LINKS ============
+            allSectionLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#') && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.getElementById(href.substring(1));
+                        if (target) {
+                            const navHeight = navbar.offsetHeight;
+                            const targetPos = target.offsetTop - navHeight - 8;
+                            window.scrollTo({
+                                top: targetPos,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // ============ TESTIMONIALS CAROUSEL ============
+            function goToTestimonial(index) {
+                if (isTransitioning || index === currentTestimonial) return;
+                if (index < 0 || index >= totalTestimonials) return;
+                isTransitioning = true;
+                currentTestimonial = index;
+                testimonialsTrack.style.transform = 'translateX(-' + (currentTestimonial * 100) + '%)';
+
+                // Update dots
+                const dots = testimonialDots.querySelectorAll('button');
+                dots.forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === currentTestimonial);
+                });
+
+                // Allow transition to complete before accepting new clicks
+                setTimeout(function() {
+                    isTransitioning = false;
+                }, 500);
+
+                // Reset auto-slide timer
+                resetAutoSlide();
+            }
+
+            function nextTestimonial() {
+                const next = (currentTestimonial + 1) % totalTestimonials;
+                goToTestimonial(next);
+            }
+
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(nextTestimonial, 5000);
+            }
+
+            // Dot button click handlers
+            testimonialDots.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') {
+                    const index = parseInt(e.target.getAttribute('data-index'), 10);
+                    goToTestimonial(index);
+                }
+            });
+
+            // Initialize carousel
+            testimonialsTrack.style.transform = 'translateX(0%)';
+            resetAutoSlide();
+
+            // Pause auto-slide on hover
+            const testimonialsWrapper = document.querySelector('.testimonials-wrapper');
+            testimonialsWrapper.addEventListener('mouseenter', function() {
+                clearInterval(autoSlideInterval);
+            });
+            testimonialsWrapper.addEventListener('mouseleave', function() {
+                resetAutoSlide();
+            });
+
+            // Touch/swipe support for carousel
+            let touchStartX = 0;
+            let touchEndX = 0;
+            testimonialsWrapper.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(autoSlideInterval);
+            }, { passive: true });
+            testimonialsWrapper.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0 && currentTestimonial < totalTestimonials - 1) {
+                        goToTestimonial(currentTestimonial + 1);
+                    } else if (diff < 0 && currentTestimonial > 0) {
+                        goToTestimonial(currentTestimonial - 1);
+                    }
+                }
+                resetAutoSlide();
+            });
+
+            // ============ CONTACT FORM VALIDATION ============
+            const nameGroup = document.getElementById('nameGroup');
+            const emailGroup = document.getElementById('emailGroup');
+            const messageGroup = document.getElementById('messageGroup');
+            const fullNameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+
+            function validateName() {
+                const value = fullNameInput.value.trim();
+                if (value.length < 2) {
+                    nameGroup.classList.add('error');
+                    return false;
+                } else {
+                    nameGroup.classList.remove('error');
+                    return true;
+                }
+            }
+
+            function validateEmail() {
+                const value = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    emailGroup.classList.add('error');
+                    return false;
+                } else {
+                    emailGroup.classList.remove('error');
+                    return true;
+                }
+            }
+
+            function validateMessage() {
+                const value = messageInput.value.trim();
+                if (value.length < 10) {
+                    messageGroup.classList.add('error');
+                    return false;
+                } else {
+                    messageGroup.classList.remove('error');
+                    return true;
+                }
+            }
+
+            // Real-time validation on blur
+            fullNameInput.addEventListener('blur', validateName);
+            emailInput.addEventListener('blur', validateEmail);
+            messageInput.addEventListener('blur', validateMessage);
+
+            // Clear errors on input
+            fullNameInput.addEventListener('input', function() {
+                if (nameGroup.classList.contains('error')) validateName();
+            });
+            emailInput.addEventListener('input', function() {
+                if (emailGroup.classList.contains('error')) validateEmail();
+            });
+            messageInput.addEventListener('input', function() {
+                if (messageGroup.classList.contains('error')) validateMessage();
+            });
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                formSuccess.classList.remove('show');
+
+                const isNameValid = validateName();
+                const isEmailValid = validateEmail();
+                const isMessageValid = validateMessage();
+
+                if (isNameValid && isEmailValid && isMessageValid) {
+                    // Simulate submission
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(function() {
+                        formSuccess.classList.add('show');
+                        contactForm.reset();
+                        submitBtn.textContent = 'Send Message';
+                        submitBtn.disabled = false;
+                        // Scroll to success message
+                        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // Hide success message after 8 seconds
+                        setTimeout(function() {
+                            formSuccess.classList.remove('show');
+                        }, 8000);
+                    }, 1200);
+                } else {
+                    // Scroll to the first error
+                    const firstError = document.querySelector('.form-group.error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            });
+
+            // ============ INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ============
+            const fadeUpElements = document.querySelectorAll('.fade-up');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Don't unobserve so elements can re-animate if needed
+                        // observer.unobserve(entry.target);
+                    }
+                    // Uncomment below to allow re-animation on scroll-back:
+                    // else {
+                    //     entry.target.classList.remove('visible');
+                    // }
+                });
+            }, observerOptions);
+
+            fadeUpElements.forEach(function(el) {
+                observer.observe(el);
+            });
+
+            // ============ KEYBOARD ACCESSIBILITY: ESC TO CLOSE MOBILE MENU ============
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobilePanel.classList.contains('active')) {
+                    closeMobileMenu();
+                    hamburger.focus();
+                }
+            });
+
+            // ============ INITIALIZATION LOG ============ 
+            console.log('⚡ New Technology Electrical Company — Website Ready');
+            console.log('📞 Contact: +255 712 345 678 | info@ntelectrical.co.tz');
+            console.log('✅ All systems initialized: navigation, carousel, form validation, scroll animations');
+        })();
+    </script>
+</body>
+</html>
